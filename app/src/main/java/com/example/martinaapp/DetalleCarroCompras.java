@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -33,6 +35,7 @@ public class DetalleCarroCompras extends AppCompatActivity {
         emptyTxt=findViewById(R.id.emptyTxt);
 
         listaInicial();
+        menuNavegacion();
     }
     private void listaInicial() {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
@@ -63,5 +66,23 @@ public class DetalleCarroCompras extends AppCompatActivity {
         txtvlrdomicilio.setText("$"+domicilio);
         totalTxt.setText("$"+total);
 
+    }
+
+    private void menuNavegacion() {
+        LinearLayout homeBtn=findViewById(R.id.homeBtn);
+        LinearLayout cartBtn=findViewById(R.id.cartBtn);
+
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DetalleCarroCompras.this,Inicio.class));
+            }
+        });
+        cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DetalleCarroCompras.this,DetalleCarroCompras.class));
+            }
+        });
     }
 }

@@ -13,22 +13,26 @@ import com.example.martinaapp.BD.DBProductos;
 import com.example.martinaapp.BD.Pedidos;
 import com.example.martinaapp.BD.Personas;
 import com.example.martinaapp.BD.Productos;
+import com.example.martinaapp.Helper.AdministrarCarrito;
 
 public class DetalleProducto extends AppCompatActivity {
 
-    private TextView addToCartBtn;
+    private TextView btnagregarCarrito;
     private TextView txtTitulo, txtprecio, descriptionTxt, txtCantidad, txtPrecioTotal;
     private ImageView btnMas, btnMenos, imgProducto;
     private Productos object;
     private int numberOder = 1;
     long id=0;
+    private AdministrarCarrito administrarCarrito;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_producto);
 
-        addToCartBtn=findViewById(R.id.addToCratBtn);
+        administrarCarrito= new AdministrarCarrito(this);
+
+        btnagregarCarrito=findViewById(R.id.btnagregarCarrito);
         txtTitulo=findViewById(R.id.txtTitulo);
         txtprecio=findViewById(R.id.txtprecio);
         descriptionTxt=findViewById(R.id.descriptionTxt);
@@ -60,8 +64,8 @@ public class DetalleProducto extends AppCompatActivity {
         if(productos != null){
             txtTitulo.setText(productos.getNombre());
             descriptionTxt.setText(productos.getDescripcion());
-            txtprecio.setText(String.valueOf(productos.getVlr_unitario()));
-            txtPrecioTotal.setText(String.valueOf(productos.getVlr_unitario()));
+            txtprecio.setText(String.valueOf("$" + productos.getVlr_unitario()));
+            txtPrecioTotal.setText("$" + String.valueOf(productos.getVlr_unitario()));
             //Glide.with(this).load( productos.getImagen().into(imgProducto);
 
             txtTitulo.setInputType(InputType.TYPE_NULL); //No permita que se habilite el teclado para escribir
@@ -75,7 +79,7 @@ public class DetalleProducto extends AppCompatActivity {
             public void onClick(View v) {
                 numberOder = numberOder + 1;
                 txtCantidad.setText(String.valueOf(numberOder));
-                txtPrecioTotal.setText(String.valueOf(numberOder * productos.getVlr_unitario()));
+                txtPrecioTotal.setText(String.valueOf("$" +numberOder * productos.getVlr_unitario()));
             }
         });
 
@@ -86,16 +90,15 @@ public class DetalleProducto extends AppCompatActivity {
                     numberOder = numberOder - 1;
                 }
                 txtCantidad.setText(String.valueOf(numberOder));
-                txtPrecioTotal.setText(String.valueOf(numberOder * productos.getVlr_unitario()));
+                txtPrecioTotal.setText(String.valueOf("$" + numberOder * productos.getVlr_unitario()));
             }
         });
 
-        addToCartBtn.setOnClickListener(new View.OnClickListener() {
+        btnagregarCarrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Pedidos pedidos= new Pedidos();
-                pedidos.setCantidad_Producto(numberOder);
-          //      managementCart.insertFood(object);
+                productos.setCantidad(numberOder);
+                administrarCarrito.insertFood(productos);
             }
         });
     }

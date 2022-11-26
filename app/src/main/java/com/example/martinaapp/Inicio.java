@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
 import com.example.martinaapp.Adapters.ListaProductosAdapter;
 import com.example.martinaapp.BD.DBProductos;
 import com.example.martinaapp.BD.Productos;
@@ -21,6 +25,25 @@ public class Inicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
         recyclerVistaProductos();
+        menuNavegacion();
+    }
+
+    private void menuNavegacion() {
+        LinearLayout homeBtn=findViewById(R.id.homeBtn);
+        LinearLayout cartBtn=findViewById(R.id.cartBtn);
+
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Inicio.this,Inicio.class));
+            }
+        });
+        cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Inicio.this,DetalleCarroCompras.class));
+            }
+        });
     }
 
     private void recyclerVistaProductos() {

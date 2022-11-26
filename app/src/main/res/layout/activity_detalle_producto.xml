@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ecebe6"
     tools:context=".DetalleProducto">
 
     <ScrollView
@@ -79,10 +80,10 @@
                             android:layout_marginEnd="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
-                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintHorizontal_bias="0.615"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.0"
+                            app:layout_constraintVertical_bias="0.555"
                             app:srcCompat="@drawable/minus" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -180,7 +181,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
-                        android:id="@+id/addToCratBtn"
+                        android:id="@+id/btnagregarCarrito"
                         android:layout_width="0dp"
                         android:layout_height="65dp"
                         android:layout_margin="8dp"

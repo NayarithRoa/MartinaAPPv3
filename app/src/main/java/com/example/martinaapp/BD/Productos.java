@@ -5,11 +5,20 @@ public class Productos {
     private String nombre;
     private String descripcion;
     private double vlr_unitario;
-    private byte[] imagen;
+    //private byte[] imagen;
+    private String imagen;
     private int cantidad;
 
+    /*public Productos(long id_Producto, String nombre, String descripcion, double vlr_unitario, byte[] imagen, int cantidad) {
+        this.id_Producto = id_Producto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.vlr_unitario = vlr_unitario;
+        this.imagen = imagen;
+        this.cantidad = cantidad;
+    }*/
 
-    public Productos(long id_Producto, String nombre, String descripcion, double vlr_unitario, byte[] imagen, int cantidad) {
+    public Productos(long id_Producto, String nombre, String descripcion, double vlr_unitario, String imagen, int cantidad) {
         this.id_Producto = id_Producto;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -57,11 +66,19 @@ public class Productos {
         this.vlr_unitario = vlr_unitario;
     }
 
-    public byte[] getImagen() {
+    /*public byte[] getImagen() {
         return imagen;
     }
 
     public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }*/
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

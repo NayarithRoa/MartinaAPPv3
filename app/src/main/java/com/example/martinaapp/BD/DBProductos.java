@@ -81,11 +81,12 @@ public class DBProductos extends DBHelper {
                 producto.setNombre(cursorProductos.getString(1));
                 producto.setDescripcion(cursorProductos.getString(2));
                 producto.setVlr_unitario(cursorProductos.getDouble(3));
-                //IMAGEN
+                producto.setImagen(cursorProductos.getString(4));
+                /*//IMAGEN
                 byte[] bytesImage=cursorProductos.getBlob(4);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytesImage,0,bytesImage.length);
                 producto.setImagen(bytesImage);
-                //IMAGEN
+                //IMAGEN*/
 
                 listaProducto.add(producto);
             } while (cursorProductos.moveToNext());
@@ -112,11 +113,12 @@ public class DBProductos extends DBHelper {
             producto.setNombre(cursorProductos.getString(1));
             producto.setDescripcion(cursorProductos.getString(2));
             producto.setVlr_unitario(cursorProductos.getDouble(3));
-            //IMAGEN
+            producto.setImagen(cursorProductos.getString(4));
+            /*//IMAGEN
             byte[] bytesImage=cursorProductos.getBlob(4);
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytesImage,0,bytesImage.length);
             producto.setImagen(bytesImage);
-            //IMAGEN
+            //IMAGEN*/
         }
 
         cursorProductos.close();

@@ -6,14 +6,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.martinaapp.Adapters.ListaArticulosCarritoAdapter;
+import com.example.martinaapp.BD.Productos;
 import com.example.martinaapp.Helper.AdministrarCarrito;
 import com.example.martinaapp.Helper.CambioNumeroArticulos;
+
+import java.util.ArrayList;
 
 public class DetalleCarroCompras extends AppCompatActivity {
     RecyclerView.Adapter adapter;
@@ -27,6 +32,7 @@ public class DetalleCarroCompras extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_carro_compras);
 
+        administrarCarrito= new AdministrarCarrito(this);
         txtTotalArt=findViewById(R.id.txtTotalArt);
         txtvlrdomicilio=findViewById(R.id.txtvlrdomicilio);
         totalTxt=findViewById(R.id.totalTxt);
@@ -36,11 +42,15 @@ public class DetalleCarroCompras extends AppCompatActivity {
 
         listaInicial();
         menuNavegacion();
+        calcularTarjeta();
     }
     private void listaInicial() {
+
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerViewList.setLayoutManager(linearLayoutManager);
-        adapter=new ListaArticulosCarritoAdapter(administrarCarrito.getListCart(), this, new CambioNumeroArticulos() {
+
+        ArrayList<Productos> listaProductos=administrarCarrito.getListCart();
+        adapter=new ListaArticulosCarritoAdapter(listaProductos, this, new CambioNumeroArticulos() {
             @Override
             public void changed() {
                 calcularTarjeta();
@@ -59,8 +69,8 @@ public class DetalleCarroCompras extends AppCompatActivity {
 
     private void calcularTarjeta() {
         double domicilio=5000;
-        double total=Math.round((administrarCarrito.getTotalPrecio()+domicilio)*100.0)/100.0;
-        double itemTotal=Math.round(administrarCarrito.getTotalPrecio() * 100.0 ) / 100.0;
+        double total=Math.round((administrarCarrito.getTotalPrecio()+domicilio)*100)/100;
+        double itemTotal=Math.round(administrarCarrito.getTotalPrecio() * 100 ) / 100;
 
         txtTotalArt.setText("$"+itemTotal);
         txtvlrdomicilio.setText("$"+domicilio);

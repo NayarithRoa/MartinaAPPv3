@@ -36,7 +36,10 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
     public void onBindViewHolder(@NonNull ListaProductosAdapter.ViewHolder viewHolder, int position) {
         viewHolder.nombre.setText(listaProductos.get(position).getNombre());
         viewHolder.precio.setText(String.valueOf(listaProductos.get(position).getVlr_unitario()));
-        Glide.with(viewHolder.itemView.getContext()).load(listaProductos.get(position).getImagen()).into(viewHolder.pic);
+        //Glide.with(viewHolder.itemView.getContext()).load(listaProductos.get(position).getImagen()).into(viewHolder.pic);
+
+        int drawableReourceId=viewHolder.itemView.getContext().getResources().getIdentifier(listaProductos.get(position).getImagen(),"drawable",viewHolder.itemView.getContext().getPackageName());
+        Glide.with(viewHolder.itemView.getContext()).load(drawableReourceId).into(viewHolder.pic);
     }
 
     @Override

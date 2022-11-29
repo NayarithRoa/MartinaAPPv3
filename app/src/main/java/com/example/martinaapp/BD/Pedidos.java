@@ -6,20 +6,17 @@ import java.sql.Time;
 public class Pedidos {
     private long id_Pedido;
     private long id_Persona;
-    private long id_Producto;
-    private Date Fecha;
-    private Time Hora;
+    private String Fecha;
+    private String Hora;
     private double Costo_total;
-    private int Cantidad_Producto;
 
-    public Pedidos(long id_Pedido, long id_Persona, long id_Producto, Date fecha, Time hora, double costo_total, int cantidad_Producto) {
+
+    public Pedidos(long id_Pedido, long id_Persona, String fecha, String hora, double costo_total) {
         this.id_Pedido = id_Pedido;
         this.id_Persona = id_Persona;
-        this.id_Producto = id_Producto;
-        Fecha = fecha;
+       Fecha = fecha;
         Hora = hora;
         Costo_total = costo_total;
-        Cantidad_Producto = cantidad_Producto;
     }
     public Pedidos() {
 
@@ -41,43 +38,29 @@ public class Pedidos {
         this.id_Persona = id_Persona;
     }
 
-    public long getId_Producto() {
-        return id_Producto;
-    }
-
-    public void setId_Producto(long id_Producto) {
-        this.id_Producto = id_Producto;
-    }
-
-    public Date getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        Fecha = fecha;
-    }
-
-    public Time getHora() {
-        return Hora;
-    }
-
-    public void setHora(Time hora) {
-        Hora = hora;
-    }
-
     public double getCosto_total() {
         return Costo_total;
     }
 
-    public void setCosto_total(int costo_total) {
+    public void setCosto_total(double costo_total) {
         Costo_total = costo_total;
     }
 
-    public int getCantidad_Producto() {
-        return Cantidad_Producto;
+    public String getFecha() {
+        return Fecha;
     }
 
-    public void setCantidad_Producto(int cantidad_Producto) {
-        Cantidad_Producto = cantidad_Producto;
+    public void setFecha(String fecha) {
+        Fecha = fecha;
     }
-}
+
+    public String getHora() {
+        return Hora;
+    }
+
+    public void setHora(String hora) {
+        Hora = hora;
+    }
+
+    }
+

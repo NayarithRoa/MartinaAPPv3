@@ -54,6 +54,13 @@ public class AdministrarCarrito {
         tempPedido.putListObject("CardList",listaProductos);
         cambioNumeroArticulos.changed();
     }
+    public void deleteArticulo(ArrayList<Productos> listaProductos,int position,CambioNumeroArticulos cambioNumeroArticulos){
+        listaProductos.remove(position);
+        tempPedido.putListObject("CardList",listaProductos);
+        cambioNumeroArticulos.changed();
+    }
+
+
     public Double getTotalPrecio() {
         ArrayList<Productos>listaProductos2=getListCart();
         double fee = 0;

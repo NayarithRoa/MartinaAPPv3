@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.martinaapp.DatosUsuario.Globales;
+
 public class DBPersonas extends DBHelper{
     private Context context;
 
@@ -33,9 +35,9 @@ public class DBPersonas extends DBHelper{
 
             long id= db.insert(Constantes.TABLA_PERSONA,null,valores);
             if (id > 0) {
-                Toast.makeText(context, "USUARIOS ALMACENADOS", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Usuarios almacenados", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, "ERROR AL CREAR LOS USUARIOS", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error al crear los usuarios", Toast.LENGTH_SHORT).show();
             }
             return id;
         }catch (Exception ex){
@@ -53,13 +55,14 @@ public class DBPersonas extends DBHelper{
             //Arreglo con las condiciones de búsqueda, WHERE
             String[] parametrosConsulta = {correo, clave};
             //Arreglo con los campos a consultar, SELECT
-            String[] camposConsulta = {"CORREO","CLAVE"};
+            String[] camposConsulta = {"ID_PERSONA","CORREO","CLAVE"};
             //Se define cursor para almacenar el resultado de la búsqueda
             Cursor cursor = base_datos.query(Constantes.TABLA_PERSONA, camposConsulta, "CORREO" + "=?" + " AND "+ "CLAVE" + "=?",
                     parametrosConsulta, null, null, null);
             cursor.moveToFirst();
-            cursor.close();
             if (cursor.getCount()>0) {
+                Globales.setId_usuario(cursor.getInt(0));
+                cursor.close();
                 return true;
             }
             else{

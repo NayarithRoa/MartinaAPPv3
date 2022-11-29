@@ -159,10 +159,12 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnConfirmar"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="16dp"
-                android:background="@drawable/boton_redondo">
+                android:background="@drawable/boton_redondo"
+                android:clickable="true">
 
                 <TextView
                     android:id="@+id/textView16"
@@ -177,6 +179,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </LinearLayout>
 

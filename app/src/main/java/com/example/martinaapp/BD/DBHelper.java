@@ -27,12 +27,17 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREAR_TABLA_PEDIDO = "CREATE TABLE " + Constantes.TABLA_PEDIDO +
             " (ID_PEDIDO INTEGER PRIMARY KEY AUTOINCREMENT, " +
             " ID_PERSONA INT NOT NULL," +
+            " FECHA TEXT NOT NULL, " +
+            " HORA TEXT NOT NULL," +
+            " COSTO_TOTAL REAL," +
+            " FOREIGN KEY (ID_PERSONA) REFERENCES "+ Constantes.TABLA_PERSONA+ "(ID_PERSONA))";
+
+    private static final String CREAR_TABLA_DETALLE_PEDIDO = "CREATE TABLE " + Constantes.TABLA_DETALLE_PEDIDO +
+            " (ID_DETALLE_PEDIDO INTEGER PRIMARY KEY AUTOINCREMENT, " +
             " ID_PRODUCTO INT NOT NULL," +
-            " FECHA DATE NOT NULL, " +
-            " HORA TIME NOT NULL," +
-            " COSTO_TOTAL DOUBLE NOT NULL," +
+            " ID_PEDIDO INT NOT NULL," +
             " CANT_PRODUCTO INT NOT NULL," +
-            " FOREIGN KEY (ID_PERSONA) REFERENCES "+ Constantes.TABLA_PERSONA+ "(ID_PERSONA),"+
+            " FOREIGN KEY (ID_PEDIDO) REFERENCES "+ Constantes.TABLA_PEDIDO+ "(ID_PEDIDO)," +
             " FOREIGN KEY (ID_PRODUCTO) REFERENCES "+ Constantes.TABLA_PRODUCTO+ "(ID_PRODUCTO))";
 
     public DBHelper(@Nullable Context context) {
@@ -47,6 +52,8 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREAR_TABLA_PRODUCTO);
         //Creación tabla PEDIDO
         sqLiteDatabase.execSQL(CREAR_TABLA_PEDIDO);
+        //Creación tabla DETALLE PEDIDO
+        sqLiteDatabase.execSQL(CREAR_TABLA_DETALLE_PEDIDO);
     }
 
     @Override
@@ -58,6 +65,8 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREAR_TABLA_PRODUCTO);//Creación de la tabla PRODUCTO después de eliminar
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Constantes.TABLA_PEDIDO);//Elimina si existe
         sqLiteDatabase.execSQL(CREAR_TABLA_PEDIDO);//Creación de la tabla PEDIDO después de eliminar
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + Constantes.TABLA_DETALLE_PEDIDO);//Elimina si existe
+        sqLiteDatabase.execSQL(CREAR_TABLA_DETALLE_PEDIDO);//Creación de la tabla TABLA PEDIDO después de eliminar
 
     }
 }

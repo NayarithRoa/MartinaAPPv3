@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.martinaapp.BD.Productos;
 import com.example.martinaapp.Helper.AdministrarCarrito;
 import com.example.martinaapp.Helper.CambioNumeroArticulos;
@@ -23,10 +22,12 @@ public class ListaArticulosCarritoAdapter  extends RecyclerView.Adapter<ListaArt
     private AdministrarCarrito administrarCarrito;
     CambioNumeroArticulos cambioNumeroArticulos;
 
-    public ListaArticulosCarritoAdapter(ArrayList<Productos> listaArticulosSeleccionados, Context context, CambioNumeroArticulos cambioNumeroArticulos) {
+
+    public ListaArticulosCarritoAdapter(ArrayList<Productos> listaArticulosSeleccionados, Context context,CambioNumeroArticulos cambioNumeroArticulos) {
         this.listaArticulosSeleccionados = listaArticulosSeleccionados;
         administrarCarrito=new AdministrarCarrito(context);
         this.cambioNumeroArticulos = cambioNumeroArticulos;
+
     }
     @NonNull
     @Override
@@ -55,6 +56,11 @@ public class ListaArticulosCarritoAdapter  extends RecyclerView.Adapter<ListaArt
             notifyDataSetChanged();
             cambioNumeroArticulos.changed();
         }));
+        holder.bntdeleteItem.setOnClickListener(view -> administrarCarrito.deleteArticulo(listaArticulosSeleccionados, position, () -> {
+            notifyDataSetChanged();
+            cambioNumeroArticulos.changed();
+        }));
+
     }
 
     @Override
@@ -64,7 +70,7 @@ public class ListaArticulosCarritoAdapter  extends RecyclerView.Adapter<ListaArt
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombre,vlrArticulo;
-        ImageView imgProd,plusItem,minusItem;
+        ImageView imgProd,plusItem,minusItem,bntdeleteItem;
         TextView txttotalProdUnit,txtCantArt;
 
         public ViewHolder(@NonNull View itemview) {
@@ -75,6 +81,7 @@ public class ListaArticulosCarritoAdapter  extends RecyclerView.Adapter<ListaArt
             txttotalProdUnit=itemview.findViewById(R.id.txttotalProdUnit);
             plusItem=itemview.findViewById(R.id.plusCardBtn);
             minusItem=itemview.findViewById(R.id.minusCardBtn);
+            bntdeleteItem=itemview.findViewById(R.id.bntdeleteItem);
             txtCantArt=itemview.findViewById(R.id.txtCantArt);
 
         }

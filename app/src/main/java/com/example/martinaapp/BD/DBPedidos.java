@@ -80,4 +80,25 @@ public class DBPedidos extends DBHelper {
         return correcto;
     }
 
+    public Pedidos verListadoPedidos(int id) {
+
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Pedidos pedidos = null;
+        Cursor cursorPedidos;
+
+        cursorPedidos = db.rawQuery("SELECT * FROM " + Constantes.TABLA_PEDIDO + " WHERE ID_PERSONA=" + id , null);
+
+        if (cursorPedidos.moveToFirst()) {
+
+            pedidos = new Pedidos();
+            pedidos.setId_Pedido(cursorPedidos.getInt(0));
+            pedidos.setFecha(cursorPedidos.getString(1));
+
+        }
+        cursorPedidos.close();
+        return pedidos;
+    }
+
 }

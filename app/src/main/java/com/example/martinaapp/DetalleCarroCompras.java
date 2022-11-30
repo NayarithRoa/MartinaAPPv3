@@ -22,6 +22,7 @@ import com.example.martinaapp.BD.Productos;
 import com.example.martinaapp.DatosUsuario.Globales;
 import com.example.martinaapp.Helper.AdministrarCarrito;
 import com.example.martinaapp.Helper.CambioNumeroArticulos;
+import com.example.martinaapp.Helper.tempPedido;
 
 import java.util.ArrayList;
 import java.text.DateFormat;
@@ -93,6 +94,8 @@ public class DetalleCarroCompras extends AppCompatActivity {
                 boolean correcto = dbPedidos.actualizarPedido(pedidoId,Costo_total);
                 if(correcto){
                   Toast.makeText(this, "Pedido almacenado", Toast.LENGTH_SHORT).show();
+                    listaProductos.clear();
+
                 } else {
                   Toast.makeText(this, "Error, no se guardó el pedido", Toast.LENGTH_SHORT).show();
                 }

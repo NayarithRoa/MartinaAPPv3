@@ -16,6 +16,20 @@
         android:theme="@style/Theme.MartinaAPP"
         tools:targetApi="31">
         <activity
+            android:name=".HistorialPedidos"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".VerDetallePedido"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".DetalleCarroCompras"
             android:exported="false">
             <meta-data

@@ -30,7 +30,7 @@ public class HistorialPedidos extends AppCompatActivity {
         DBPedidos dbPedidos = new DBPedidos(HistorialPedidos.this);
 
         listaArrayEstudiantes= new ArrayList<>();
-        adapter= new ListaPedidosXUsuario(dbPedidos.verListadoPedidos(1));
-        listaEstudiantes.setAdapter(adapter);
+        adapter= new ListaPedidosXUsuario(dbPedidos.verListadoPedidos(Globales.getId_usuario()));
+        listadoPedidos.setAdapter(adapter);
     }
 }

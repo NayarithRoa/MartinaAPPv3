@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 
 import com.example.martinaapp.DatosUsuario.Globales;
 
+import java.util.ArrayList;
+
 public class DBPedidos extends DBHelper {
     private Context context;
 
@@ -80,25 +82,27 @@ public class DBPedidos extends DBHelper {
         return correcto;
     }
 
-    public Pedidos verListadoPedidos(int id) {
+    public ArrayList<Pedidos> verListadoPedidos(int id) {
 
         DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-
+        ArrayList<Pedidos> listaPedido = new ArrayList<>();
         Pedidos pedidos = null;
         Cursor cursorPedidos;
 
         cursorPedidos = db.rawQuery("SELECT * FROM " + Constantes.TABLA_PEDIDO + " WHERE ID_PERSONA=" + id , null);
 
         if (cursorPedidos.moveToFirst()) {
-
+            do {
             pedidos = new Pedidos();
             pedidos.setId_Pedido(cursorPedidos.getInt(0));
-            pedidos.setFecha(cursorPedidos.getString(1));
+            pedidos.setFecha(cursorPedidos.getString(2));
 
+                listaPedido.add(pedidos);
+            } while (cursorPedidos.moveToNext());
         }
         cursorPedidos.close();
-        return pedidos;
+        return listaPedido;
     }
 
 }

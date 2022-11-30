@@ -155,6 +155,7 @@ public class DetalleCarroCompras extends AppCompatActivity {
     private void menuNavegacion() {
         LinearLayout homeBtn=findViewById(R.id.homeBtn);
         LinearLayout cartBtn=findViewById(R.id.cartBtn);
+        LinearLayout btnPedidos=findViewById(R.id.btnPedidos);
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +167,13 @@ public class DetalleCarroCompras extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(DetalleCarroCompras.this,DetalleCarroCompras.class));
+            }
+        });
+
+        btnPedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DetalleCarroCompras.this,HistorialPedidos.class));
             }
         });
     }

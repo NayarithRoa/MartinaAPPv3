@@ -6,4 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".VerDetallePedido">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaDetallePedidos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".9" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,7 +34,7 @@ public class ListaPedidosXUsuario extends RecyclerView.Adapter<ListaPedidosXUsua
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         long id=listaPedidosxUsuario.get(position).getId_Pedido();
-        holder.viewProducto.setText("Pedido No "+id);
+        holder.viewProducto.setText("Pedido No. "+id);
         holder.viewfecha.setText(listaPedidosxUsuario.get(position).getFecha());
 
     }

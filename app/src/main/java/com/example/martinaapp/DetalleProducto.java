@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.martinaapp.BD.DBProductos;
-import com.example.martinaapp.BD.Pedidos;
-import com.example.martinaapp.BD.Personas;
 import com.example.martinaapp.BD.Productos;
 import com.example.martinaapp.Helper.AdministrarCarrito;
 
@@ -36,7 +34,7 @@ public class DetalleProducto extends AppCompatActivity {
         txtTitulo=findViewById(R.id.txtTitulo);
         txtprecio=findViewById(R.id.txtprecio);
         descriptionTxt=findViewById(R.id.descriptionTxt);
-        txtCantidad=findViewById(R.id.txtCantidad);
+        txtCantidad=findViewById(R.id.viewCantidad);
         btnMas=findViewById(R.id.btnMas);
         btnMenos=findViewById(R.id.btnMenos);
         imgProducto=findViewById(R.id.imgProducto);
@@ -53,11 +51,6 @@ public class DetalleProducto extends AppCompatActivity {
             id = (long) savedInstanceState.getSerializable("ID");
         }
 
-        //int drawableResourceId=this.getResources().getIdentifier(object.getPic(),"drawable",this.getPackageName());
-        //Glide.with(this)
-          //      .load(drawableResourceId)
-            //    .into(picFood);
-
         final DBProductos dbProductos= new DBProductos(DetalleProducto.this);
         Productos productos = dbProductos.verDetalleProducto((int) id);
 
@@ -66,8 +59,12 @@ public class DetalleProducto extends AppCompatActivity {
             descriptionTxt.setText(productos.getDescripcion());
             txtprecio.setText(String.valueOf("$" + productos.getVlr_unitario()));
             txtPrecioTotal.setText("$" + String.valueOf(productos.getVlr_unitario()));
-            //Glide.with(this).load( productos.getImagen().into(imgProducto);
-
+           //imagen
+            int drawableResourceId=this.getResources().getIdentifier(productos.getImagen(),"drawable",this.getPackageName());
+            Glide.with(this)
+                    .load(drawableResourceId)
+                    .into(imgProducto);
+            //imagenfin
             txtTitulo.setInputType(InputType.TYPE_NULL); //No permita que se habilite el teclado para escribir
             descriptionTxt.setInputType(InputType.TYPE_NULL);
             txtprecio.setInputType(InputType.TYPE_NULL);

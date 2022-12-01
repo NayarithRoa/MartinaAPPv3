@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class DBDetalle_Pedido extends DBHelper {
     private Context context;
 
@@ -36,5 +38,30 @@ public class DBDetalle_Pedido extends DBHelper {
             System.err.println(ex);
             return 0;
         }
+    }
+
+    public ArrayList<detalleProducto> verDetallePedido(int id) {
+
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ArrayList<detalleProducto> listaDetallePed = new ArrayList<>();
+        detalleProducto detalleProducto = null;
+        Cursor cursorDetallePedidos;
+
+        cursorDetallePedidos = db.rawQuery("SELECT PROD.NOMBRE, PROD.DESCRIPCION, PROD.VLR_UNITARIO, PROD.IMAGEN, DET.CANT_PRODUCTO FROM " + Constantes.TABLA_DETALLE_PEDIDO + " DET, "+ Constantes.TABLA_PRODUCTO + " PROD WHERE DET.ID_PRODUCTO=PROD.ID_PRODUCTO AND DET.ID_PEDIDO=" + id , null);
+        if (cursorDetallePedidos.moveToFirst()) {
+            do {
+                detalleProducto = new detalleProducto();
+                detalleProducto.setNombre(cursorDetallePedidos.getString(0));
+                detalleProducto.setDescripcion(cursorDetallePedidos.getString(1));
+                detalleProducto.setVlr_unitario(cursorDetallePedidos.getDouble(2));
+                detalleProducto.setImagen(cursorDetallePedidos.getString(3));
+                detalleProducto.setCantidad_Producto(cursorDetallePedidos.getInt(4));
+
+                listaDetallePed.add(detalleProducto);
+            } while (cursorDetallePedidos.moveToNext());
+        }
+        cursorDetallePedidos.close();
+        return listaDetallePed;
     }
 }

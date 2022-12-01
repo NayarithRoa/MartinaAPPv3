@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.martinaapp.BD.Productos;
 import com.example.martinaapp.Helper.AdministrarCarrito;
 import com.example.martinaapp.Helper.CambioNumeroArticulos;
@@ -44,8 +45,8 @@ public class ListaArticulosCarritoAdapter  extends RecyclerView.Adapter<ListaArt
         holder.txttotalProdUnit.setText("$"+Math.round((listaArticulosSeleccionados.get(position).getCantidad()*listaArticulosSeleccionados.get(position).getVlr_unitario())));
         holder.txtCantArt.setText(String.valueOf(listaArticulosSeleccionados.get(position).getCantidad()));
 
-        //int drawableReourceId=holder.itemView.getContext().getResources().getIdentifier(listaArticulosSeleccionados.get(position).getImagen(),"drawable",holder.itemView.getContext().getPackageName());
-        //Glide.with(holder.itemView.getContext()).load(drawableReourceId).into(holder.imgProd);
+        int drawableReourceId=holder.itemView.getContext().getResources().getIdentifier(listaArticulosSeleccionados.get(position).getImagen(),"drawable",holder.itemView.getContext().getPackageName());
+        Glide.with(holder.itemView.getContext()).load(drawableReourceId).into(holder.imgProd);
 
         holder.plusItem.setOnClickListener(v -> administrarCarrito.plusNumberFood(listaArticulosSeleccionados, position, () -> {
             notifyDataSetChanged();

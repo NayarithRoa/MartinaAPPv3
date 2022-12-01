@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 if(dbPersonas.autenticarPersonas(txtCorreo.getText().toString(),txtClave.getText().toString())){
                     Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(this, Inicio.class);
-                    intent.putExtra("documento","HOLA");
                     startActivity(intent);
 
 

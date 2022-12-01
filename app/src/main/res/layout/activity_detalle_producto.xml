@@ -106,7 +106,7 @@
                                 app:srcCompat="@drawable/white_circle" />
 
                             <TextView
-                                android:id="@+id/txtCantidad"
+                                android:id="@+id/viewCantidad"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="1"

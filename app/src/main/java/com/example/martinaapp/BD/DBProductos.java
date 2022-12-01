@@ -38,9 +38,9 @@ public class DBProductos extends DBHelper {
 
             long id=db.insert(Constantes.TABLA_PRODUCTO,null,valores);
             if (id > 0) {
-                Toast.makeText(context, "PRODUCTOS ALMACENADOS", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Producto almacenado", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(context, "ERROR AL CREAR LOS PRODUCTOS", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error al guardar el producto", Toast.LENGTH_SHORT).show();
             }
             return id;
         }catch (Exception ex){

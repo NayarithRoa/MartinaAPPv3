@@ -40,11 +40,13 @@ public class ProductosDefault extends DBHelper{
         productos.setNombre("Mug");
         productos.setDescripcion("Pocillo con 6 fresas aproximadamente, masmelo y flores");
         productos.setVlr_unitario(13000);
+        productos.setImagen("producto3");
         dbProducto.insertarProductos(productos);
         //Tercer registro
         productos.setNombre("Carretilla");
         productos.setDescripcion("Carretilla con 20 fresas aproximadamente, masmelos, vino mediano y rosas");
         productos.setVlr_unitario(60000);
+        productos.setImagen("producto4");
         dbProducto.insertarProductos(productos);
 
     }

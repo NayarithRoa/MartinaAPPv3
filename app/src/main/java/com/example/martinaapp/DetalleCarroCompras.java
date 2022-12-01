@@ -1,10 +1,13 @@
 package com.example.martinaapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +34,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DetalleCarroCompras extends AppCompatActivity {
+
+
+
     RecyclerView.Adapter adapter;
     RecyclerView recyclerViewList;
     private AdministrarCarrito administrarCarrito;
@@ -58,6 +64,8 @@ public class DetalleCarroCompras extends AppCompatActivity {
         emptyTxt=findViewById(R.id.emptyTxt);
         btnConfirmar=findViewById(R.id.btnConfirmar);
 
+
+
         listaInicial();
         menuNavegacion();
         calcularTarjeta();
@@ -66,6 +74,16 @@ public class DetalleCarroCompras extends AppCompatActivity {
             insertarPedido();
         });
 
+    }
+    public AlertDialog dialogoConfirmacionPedido(){
+        AlertDialog.Builder builder= new AlertDialog.Builder(DetalleCarroCompras.this);
+        builder.setTitle("Novedad pedido").setMessage("Su pedido ha sido registrado en el sistema").setPositiveButton("Volver a inicio", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                startActivity(new Intent(DetalleCarroCompras.this,Inicio.class));
+            }
+        });
+        return builder.create();
     }
 
     private void insertarPedido() {
@@ -93,9 +111,7 @@ public class DetalleCarroCompras extends AppCompatActivity {
                 int pedidoId=idPedidoCreado.intValue();
                 boolean correcto = dbPedidos.actualizarPedido(pedidoId,Costo_total);
                 if(correcto){
-                  Toast.makeText(this, "Pedido almacenado", Toast.LENGTH_SHORT).show();
-                    listaProductos.clear();
-
+                    dialogoConfirmacionPedido().show();
                 } else {
                   Toast.makeText(this, "Error, no se guardó el pedido", Toast.LENGTH_SHORT).show();
                 }

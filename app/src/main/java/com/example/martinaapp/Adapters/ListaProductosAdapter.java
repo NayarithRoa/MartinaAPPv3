@@ -58,7 +58,6 @@ public class ListaProductosAdapter extends RecyclerView.Adapter<ListaProductosAd
             nombre=itemView.findViewById(R.id.title);
             pic=itemView.findViewById(R.id.pic);
             precio=itemView.findViewById(R.id.precio);
-            addBtn=itemView.findViewById(R.id.addBtn);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

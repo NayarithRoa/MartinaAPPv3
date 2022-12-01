@@ -34,18 +34,22 @@ public class MainActivity extends AppCompatActivity {
             try{
                 //Verificar existencia persona
                 DBPersonas dbPersonas = new DBPersonas(this);
-                if(dbPersonas.autenticarPersonas(txtCorreo.getText().toString(),txtClave.getText().toString())){
-                    Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(this, Inicio.class);
-                    startActivity(intent);
-
-
+                if (txtCorreo.getText().toString().equals("")||txtClave.getText().toString().equals("")){
+                    Toast.makeText(this, "Debe ingresar los datos solicitados", Toast.LENGTH_LONG).show();
                 }
-                else {
-                    Toast.makeText(this, "Usuario no registrado en el sistema", Toast.LENGTH_LONG).show();
-                    txtCorreo.setText("");
-                    txtClave.setText("");
+                else{
+                    if(dbPersonas.autenticarPersonas(txtCorreo.getText().toString(),txtClave.getText().toString())){
+                        Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(this, Inicio.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        Toast.makeText(this, "Usuario no registrado en el sistema", Toast.LENGTH_LONG).show();
+                        txtCorreo.setText("");
+                        txtClave.setText("");
+                    }
                 }
+
             }
             catch  (Exception e){
                 Toast.makeText(this, "Error, no fue posible iniciar sesión", Toast.LENGTH_SHORT).show();
